@@ -6,6 +6,8 @@
 #include <QFileInfo>
 #include <QDebug>
 #include "imageitem.h"
+#include <QSettings>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,11 +15,21 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     imageLabel = new QLabel(this);
-    imageLabel->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
+    imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     imageLabel->setScaledContents(true);
     ui->scrollArea->setWidget(imageLabel);
 
+    // Загрузка пути к последнему открытому файлу
+    QSettings settings("MyCompany", "MyApp");
+    QString lastOpenedFile = settings.value("lastOpenedFile").toString();
+    if (!lastOpenedFile.isEmpty()) {
+        QPixmap pix(lastOpenedFile);
+        imageLabel->setPixmap(pix);
+        imageLabel->setFixedSize(pix.size());
+        setImagesList(lastOpenedFile);
+    }
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -27,14 +39,20 @@ MainWindow::~MainWindow()
 void MainWindow::on_action_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
-                       "Выбрать изображение", "",
-                        "Изображения (*.bmp  *.jpg *.png)");
-    QPixmap pix(fileName);
-    imageLabel->setPixmap(pix);
-    imageLabel->setFixedSize(pix.width(),pix.height());
-    setImagesList(fileName);
+                                                    "Выбрать изображение", "",
+                                                    "Изображения (*.bmp *.jpg *.png)");
+    if (!fileName.isEmpty()) {
+        QPixmap pix(fileName);
+        imageLabel->setPixmap(pix);
+        imageLabel->setFixedSize(pix.size());
+        setImagesList(fileName);
 
+        // Сохранение пути к последнему открытому файлу
+        QSettings settings("MyCompany", "MyApp");
+        settings.setValue("lastOpenedFile", fileName);
+    }
 }
+
 
 void MainWindow::on_action_3_triggered()
 {

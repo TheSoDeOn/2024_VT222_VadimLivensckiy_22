@@ -79,7 +79,6 @@
      <string>Файл</string>
     </property>
     <addaction name="action"/>
-    <addaction name="action_2"/>
     <addaction name="action_3"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -88,19 +87,9 @@
     </property>
     <addaction name="action_4"/>
     <addaction name="action_5"/>
-    <addaction name="action_6"/>
-    <addaction name="action_7"/>
-   </widget>
-   <widget class="QMenu" name="menu_3">
-    <property name="title">
-     <string>О программе</string>
-    </property>
-    <addaction name="action_8"/>
-    <addaction name="action_9"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action">
@@ -110,7 +99,7 @@
   </action>
   <action name="action_2">
    <property name="text">
-    <string>Сохранить как</string>
+    <string>Сохранить путь к фото</string>
    </property>
   </action>
   <action name="action_3">

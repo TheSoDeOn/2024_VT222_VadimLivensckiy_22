@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
+
 namespace Ui {
 class MainWindow;
 }
@@ -17,7 +18,6 @@ public:
 
 private slots:
     void on_action_triggered();
-
     void on_action_3_triggered();
 
 private:
