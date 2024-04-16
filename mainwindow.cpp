@@ -7,11 +7,12 @@
 #include <QDebug>
 #include "imageitem.h"
 #include <QSettings>
-
+#include <QSharedPointer> // QSharedPointer умный указатель
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    imageLabel(new QLabel(this))
 {
     ui->setupUi(this);
     imageLabel = new QLabel(this);
@@ -22,10 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
     // Загрузка пути к последнему открытому файлу
     QSettings settings("MyCompany", "MyApp");
     QString lastOpenedFile = settings.value("lastOpenedFile").toString();
+    //В данном примере мы добавили QSharedPointer для управления памятью объекта QPixmap.
+    //Теперь у нас будет автоматическое уничтожение объектов QPixmap при выходе из области видимости.
     if (!lastOpenedFile.isEmpty()) {
-        QPixmap pix(lastOpenedFile);
-        imageLabel->setPixmap(pix);
-        imageLabel->setFixedSize(pix.size());
+        QSharedPointer<QPixmap> pix = QSharedPointer<QPixmap>(new QPixmap(lastOpenedFile));
+        imageLabel->setPixmap(*pix);
+        imageLabel->setFixedSize(pix->size());
         setImagesList(lastOpenedFile);
     }
 }
@@ -38,13 +41,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_action_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                                    "Выбрать изображение", "",
-                                                    "Изображения (*.bmp *.jpg *.png)");
+    QString fileName = QFileDialog::getOpenFileName(this, "Выбрать изображение", "", "Изображения (*.bmp *.jpg *.png)");
     if (!fileName.isEmpty()) {
-        QPixmap pix(fileName);
-        imageLabel->setPixmap(pix);
-        imageLabel->setFixedSize(pix.size());
+        QSharedPointer<QPixmap> pix = QSharedPointer<QPixmap>(new QPixmap(fileName));
+        imageLabel->setPixmap(*pix);
+        imageLabel->setFixedSize(pix->size());
         setImagesList(fileName);
 
         // Сохранение пути к последнему открытому файлу
@@ -92,3 +93,5 @@ void MainWindow::setImagesList(QString filename)
         ui->listWidget->setItemWidget(item, imgitem);
     }
 }
+
+

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include <QListWidgetItem>
+#include <memory>
 
 namespace Ui {
 class MainWindow;
@@ -21,7 +23,7 @@ private slots:
     void on_action_3_triggered();
     void on_action_4_triggered();
     void on_action_5_triggered();
-
+    //void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 private:
     Ui::MainWindow *ui;
     QLabel * imageLabel;
