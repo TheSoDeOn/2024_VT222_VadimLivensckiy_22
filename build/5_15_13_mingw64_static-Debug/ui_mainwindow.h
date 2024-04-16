@@ -50,7 +50,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(518, 346);
+        MainWindow->resize(765, 332);
         action = new QAction(MainWindow);
         action->setObjectName(QString::fromUtf8("action"));
         action_2 = new QAction(MainWindow);
@@ -80,7 +80,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 292, 285));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 483, 269));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         horizontalLayout->addWidget(scrollArea);
@@ -93,16 +93,16 @@ public:
         sizePolicy.setHeightForWidth(listWidget->sizePolicy().hasHeightForWidth());
         listWidget->setSizePolicy(sizePolicy);
         listWidget->setMinimumSize(QSize(200, 0));
-        listWidget->setMaximumSize(QSize(200, 16777215));
+        listWidget->setMaximumSize(QSize(350, 16777215));
         listWidget->setIconSize(QSize(50, 30));
-        listWidget->setViewMode(QListView::ListMode);
+        listWidget->setViewMode(QListView::ViewMode::ListMode);
 
         horizontalLayout->addWidget(listWidget);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 518, 21));
+        menuBar->setGeometry(QRect(0, 0, 765, 21));
         menu = new QMenu(menuBar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menuBar);

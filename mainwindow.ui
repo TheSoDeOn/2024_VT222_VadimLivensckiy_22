@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
-    <height>346</height>
+    <width>765</width>
+    <height>332</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,8 +25,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>292</width>
-         <height>285</height>
+         <width>483</width>
+         <height>269</height>
         </rect>
        </property>
       </widget>
@@ -48,7 +48,7 @@
       </property>
       <property name="maximumSize">
        <size>
-        <width>200</width>
+        <width>350</width>
         <height>16777215</height>
        </size>
       </property>
@@ -59,7 +59,7 @@
        </size>
       </property>
       <property name="viewMode">
-       <enum>QListView::ListMode</enum>
+       <enum>QListView::ViewMode::ListMode</enum>
       </property>
      </widget>
     </item>
@@ -70,7 +70,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>518</width>
+     <width>765</width>
      <height>21</height>
     </rect>
    </property>

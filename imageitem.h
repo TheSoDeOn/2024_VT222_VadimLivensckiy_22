@@ -10,6 +10,7 @@ class ImageItem : public QWidget
     Q_OBJECT
 public:
     explicit ImageItem(QWidget *parent = nullptr);
+    void setData(QPixmap pix, QString titleText, QString infoText);
 
 signals:
 private:

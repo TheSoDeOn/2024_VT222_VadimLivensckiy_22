@@ -50,18 +50,12 @@ void MainWindow::setImagesList(QString filename)
     filter << "*.jpg" << "*.png" << "*.bmp";
     QFileInfoList list =  dir.entryInfoList(filter);
     for (int i=0;i<list.count();i++) {
+        QFileInfo f = list.at(i);
         QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
         ImageItem *imgitem = new ImageItem;
+        QPixmap pix(f.filePath());
+        imgitem->setData(pix.scaledToWidth(80, Qt::SmoothTransformation), f.fileName(), QString::number(f.size()));
         item->setSizeHint(imgitem->sizeHint());
         ui->listWidget->setItemWidget(item, imgitem);
-        // qDebug() << list.at(i).filePath();
-        // QFileInfo f = list.at(i);
-        // QIcon icon;
-        // icon.addFile(f.filePath());
-        //
-        // ui->listWidget->addItem(item);
-        // if(f.filePath() == filename){
-        //     item->setSelected(true);
-        // }
     }
 }
