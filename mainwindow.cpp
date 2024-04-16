@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QDebug>
+#include "imageitem.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,21 +43,25 @@ void MainWindow::on_action_3_triggered()
 
 void MainWindow::setImagesList(QString filename)
 {
-    ui->listWidget->clear();
-    QFileInfo info(filename);
-    QDir dir(info.absolutePath());
+    ui->listWidget->clear();  // предварительно удаляем все элементы из списка
+    QFileInfo info(filename);  // получаем объект с инфой о файле
+    QDir dir(info.absolutePath()); // получаем абсолютный путь и создаёт объект класса для работы с папками
     QStringList filter;
     filter << "*.jpg" << "*.png" << "*.bmp";
     QFileInfoList list =  dir.entryInfoList(filter);
     for (int i=0;i<list.count();i++) {
-        qDebug() << list.at(i).filePath();
-        QFileInfo f = list.at(i);
-        QIcon icon;
-        icon.addFile(f.filePath());
-        QListWidgetItem *item = new QListWidgetItem(icon, f.fileName());
-        ui->listWidget->addItem(item);
-        if(f.filePath() == filename){
-            item->setSelected(true);
-        }
+        QListWidgetItem *item = new QListWidgetItem(ui->listWidget);
+        ImageItem *imgitem = new ImageItem;
+        item->setSizeHint(imgitem->sizeHint());
+        ui->listWidget->setItemWidget(item, imgitem);
+        // qDebug() << list.at(i).filePath();
+        // QFileInfo f = list.at(i);
+        // QIcon icon;
+        // icon.addFile(f.filePath());
+        //
+        // ui->listWidget->addItem(item);
+        // if(f.filePath() == filename){
+        //     item->setSelected(true);
+        // }
     }
 }
