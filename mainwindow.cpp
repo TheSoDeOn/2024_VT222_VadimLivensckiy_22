@@ -59,6 +59,21 @@ void MainWindow::on_action_3_triggered()
     this->close();
 }
 
+void MainWindow::on_action_4_triggered()
+{
+    int newWidth = int(imageLabel->width()*1.25);
+    int newHeight = int(imageLabel->height()*1.25);
+    imageLabel->setFixedSize(newWidth,newHeight);
+}
+
+void MainWindow::on_action_5_triggered()
+{
+    int newWidth = int(imageLabel->width()*0.75);
+    int newHeight = int(imageLabel->height()*0.75);
+    imageLabel->setFixedSize(newWidth,newHeight);
+}
+
+
 void MainWindow::setImagesList(QString filename)
 {
     ui->listWidget->clear();  // предварительно удаляем все элементы из списка
